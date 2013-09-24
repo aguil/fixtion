@@ -1,0 +1,10 @@
+# dev and ci requirements
+flake8
+nose
+rednose
+mock
+coverage
+nose-exclude
+
+# package dependencies
+contextdecorator
