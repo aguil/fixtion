@@ -80,13 +80,13 @@ class patched_dict_fixture_tests(unittest.TestCase):
     @mock.patch.dict('os.environ', {'foo': 'buzz'})
     def test_changes_foo_value(self):
         import os
-        with patched_dict_fixture(foo='bar')():
+        with patched_dict_fixture(foo='bar'):
             self.assertEqual('bar', os.environ['foo'])
 
     @mock.patch.dict('os.environ', {'foo': 'buzz'})
     def test_restores_foo_value(self):
         import os
-        with patched_dict_fixture(foo='bar')():
+        with patched_dict_fixture(foo='bar'):
             pass
         self.assertEqual('buzz', os.environ['foo'])
 
@@ -236,7 +236,6 @@ class fixture_function_tests(unittest.TestCase):
              call.exit_foo()],
             context.mock_calls)
 
-    @skip('TODO: Stack fixtures')
     def test_stack_fixtures(self):
         from mock import call
 
@@ -254,8 +253,8 @@ class fixture_function_tests(unittest.TestCase):
             yield
             context.exit_bar()
 
-        @foo_fixture
         @bar_fixture
+        @foo_fixture
         def test():
             pass
 
